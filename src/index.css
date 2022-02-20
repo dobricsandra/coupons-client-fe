@@ -1,0 +1,16 @@
+html {
+    --color-black: rgba(36, 30, 30, 0.98);
+    --color-red: rgba(166, 34, 42, 1);
+
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
