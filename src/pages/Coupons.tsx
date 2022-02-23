@@ -1,5 +1,5 @@
 const Coupons = () => {
-    return <a href="sss.r">Hello</a>;
+    return <div>Hello</div>;
 };
 
 export default Coupons;
