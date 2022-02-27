@@ -1,18 +1,24 @@
 import { useMediaQuery } from "react-responsive";
-
+import { BiAddToQueue } from "react-icons/bi";
 import { NavigationStyled, MobileNavigationStyled } from "./Navigation.style";
 
 const Navigation = () => {
-    const isBigScreen = useMediaQuery({ query: "(min-width: 470px)" });
-    const isMobile = useMediaQuery({ query: "(max-width: 470px)" });
+    const isBigScreen = useMediaQuery({ query: "(min-width: 320px)" });
+    const isMobile = useMediaQuery({ query: "(max-width: 320px)" });
 
     return (
         <>
             {isBigScreen && (
                 <NavigationStyled>
                     <div className="upper-header">
-                        <label>Aktualni kuponi na jednom mjestu.</label>
-                        <input placeholder="Search coupons..." />
+                        <div>
+                            <label>Aktualni kuponi na jednom mjestu.</label>
+                            <input placeholder="Search coupons..." />
+                        </div>
+                        <button>
+                            <BiAddToQueue size={24} />
+                            <span>Dodaj&nbsp;novi</span>
+                        </button>
                     </div>
                     <div className="lower-header">
                         <ul>
