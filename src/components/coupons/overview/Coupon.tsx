@@ -1,13 +1,9 @@
 import styled from "styled-components";
 
-export default function Coupons() {
-    const couponData = {
-        webshopName: "Lijepa.hr",
-        couponCode: "XXXXXXX87J",
-        amount: 20,
-    };
+export default function Coupon(props: any) {
+    const couponData = props.couponData;
     const webshopLogo = () => {
-        if (couponData.webshopName === "Lijepa.hr") {
+        if (couponData.webshop.name === "Lijepa.hr") {
             return (
                 <img
                     src="/images/webshop-logos/lijepa-hr_logo.png"
@@ -15,7 +11,7 @@ export default function Coupons() {
                 />
             );
         }
-        if (couponData.webshopName === "Notino") {
+        if (couponData.webshop.name === "Notino") {
             return (
                 <img
                     src="/images/webshop-logos/notino_logo.png"
@@ -23,7 +19,7 @@ export default function Coupons() {
                 />
             );
         }
-        return <span className="name-logo">{couponData.webshopName}</span>;
+        return <span className="name-logo">{couponData.webshop.name}</span>;
     };
 
     const copyToClipboard = () => {
@@ -37,7 +33,7 @@ export default function Coupons() {
                 <div>{couponData.amount} kn</div>
             </CouponHeader>
             <div className="coupon-code">
-                {couponData.couponCode}
+                {couponData.code}
                 <img
                     src="/images/copy_icon.png"
                     alt="copy"
@@ -46,7 +42,7 @@ export default function Coupons() {
                 />
             </div>
             <p>* Kupon vrijedi od 2021-01-01 do 2020-01-01</p>
-            <p>* Ukupna kupovina mora bitii X</p>
+            <p>* {couponData.description}</p>
             <div className="rating">
                 Uspješno iskorišteno?
                 <img
@@ -55,7 +51,7 @@ export default function Coupons() {
                     title="Da"
                     alt="thumbs up"
                 />
-                <span>12</span>
+                <span>{couponData.popularity}</span>
                 <img
                     className="w-6"
                     src="/images/thumb_down.png"
