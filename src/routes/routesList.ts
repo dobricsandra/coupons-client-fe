@@ -1,6 +1,11 @@
 const webshopNameFilterRoute = "/coupons?webshopName=";
 
-export const webshopRoutes = [
+export interface IRouteList {
+    readonly webshopName: string;
+    readonly redirectPath: string;
+}
+
+export const webshopRoutes: IRouteList[] = [
     {
         webshopName: "Lijepa.hr",
         get redirectPath() {

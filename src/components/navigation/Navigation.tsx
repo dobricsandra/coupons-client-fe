@@ -1,5 +1,5 @@
 import { BiAddToQueue } from "react-icons/bi";
-import { NavigationStyled, MobileNavigationStyled } from "./Navigation.style";
+import { NavigationStyled } from "./Navigation.style";
 import { useNavigate } from "react-router-dom";
 import { webshopRoutes } from "../../routes/routesList";
 
@@ -37,7 +37,6 @@ const Navigation = () => {
                             >
                                 {item.webshopName}
                             </li>
-                            
                         ))}
                     </ul>
                 </div>

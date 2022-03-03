@@ -14,12 +14,12 @@ html {
     box-sizing: border-box;
 }
 
-a {
+li {
     all: unset;
     cursor: pointer;
 }
 
-a:hover {
+li:hover {
     text-decoration: underline;
 }
 

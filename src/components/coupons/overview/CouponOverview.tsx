@@ -1,27 +1,21 @@
-import { useQuery } from "react-query";
-import axios from "../../../services/axiosClient";
 import Coupon from "./Coupon";
 import CouponsOverviewStyled from "./CouponOverview.style";
+import InfoBox from "../../common/info-box/InfoBox";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
+import useCouponsFetch from "../../../hooks/coupons/useCoupon";
 export default function CouponsOverview() {
     const location = useLocation();
-  
-    const [queryString, setQueryString] = useState(new URLSearchParams(location.search).toString());
 
-    useEffect(()=>{
-        setQueryString(new URLSearchParams(location.search).toString())
+    const [queryString, setQueryString] = useState(
+        new URLSearchParams(location.search).toString()
+    );
+
+    useEffect(() => {
+        setQueryString(new URLSearchParams(location.search).toString());
     }, [location]);
 
-    const getCoupons = async () => {
-        const { data } = await axios.get("vouchers?" + queryString.toString());
-        return data;
-    };
-
-    const useCouponsFetch = () => useQuery(["getCoupons", queryString], getCoupons);
-
-    
-    const { data: coupons, isLoading, isError } = useCouponsFetch();
+    const { data: coupons, isLoading, isError } = useCouponsFetch(queryString);
 
     const hasCoupons = coupons && coupons.length > 0;
 
@@ -51,7 +45,7 @@ export default function CouponsOverview() {
     }
 
     if (!hasCoupons) {
-        return <div>No coupons...</div>;
+        return <InfoBox>No coupons found!</InfoBox>;
     }
 
     return (

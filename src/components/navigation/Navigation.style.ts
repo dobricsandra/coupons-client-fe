@@ -85,7 +85,7 @@ export const NavigationStyled = styled.div`
 
         li {
             color: white;
-
+            padding: 2px;
             display: inline;
             @media (max-width: 950px) {
                 font-size: 15px;
@@ -105,5 +105,3 @@ export const NavigationStyled = styled.div`
         }
     }
 `;
-
-export const MobileNavigationStyled = styled.div``;

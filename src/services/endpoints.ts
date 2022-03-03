@@ -1,3 +1,9 @@
-const API_BASE_URL = "https://vouchers-minapi.herokuapp.com/";
+const API_ENDPOINTS = {
+    coupons: {
+        getCouponEndpoint: "/vouchers",
+        upvoteCouponEndpoint: "/vouchers/like",
+        downvoteCouponEndpoint: "vouchers/dislike",
+    },
+};
 
-export default API_BASE_URL;
+export default API_ENDPOINTS;
