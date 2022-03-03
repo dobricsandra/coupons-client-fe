@@ -1,64 +1,47 @@
-import { useMediaQuery } from "react-responsive";
 import { BiAddToQueue } from "react-icons/bi";
 import { NavigationStyled, MobileNavigationStyled } from "./Navigation.style";
+import { useNavigate } from "react-router-dom";
+import { webshopRoutes } from "../../routes/routesList";
 
 const Navigation = () => {
-    const isBigScreen = useMediaQuery({ query: "(min-width: 320px)" });
-    const isMobile = useMediaQuery({ query: "(max-width: 320px)" });
-
+    const navigate = useNavigate();
     return (
         <>
-            {isBigScreen && (
-                <NavigationStyled>
-                    <div className="upper-header">
-                        <div>
-                            <label>Aktualni kuponi na jednom mjestu.</label>
-                            <input placeholder="Search coupons..." />
-                        </div>
-                        <button>
-                            <BiAddToQueue size={24} />
-                            <span>Dodaj&nbsp;novi</span>
-                        </button>
-                    </div>
-                    <div className="lower-header">
-                        <ul>
-                            <li>Show all</li>
-                        </ul>
-                        <div className="border"></div>
-                        <ul>
-                            <li>Most popular</li>
-                            <li>Newest</li>
-                        </ul>
-                        <div className="border"></div>
-                        <ul>
-                            <li>Lijepa.hr</li>
-                            <li>Notino.hr</li>
-                            <li>Notino.hr</li>
-                            <li>Notino.hr</li>
-                        </ul>
-                    </div>
-                </NavigationStyled>
-            )}
-            {isMobile && (
-                <MobileNavigationStyled>
-                    <div className="upper-header">
+            <NavigationStyled>
+                <div className="upper-header">
+                    <div>
+                        <label>Aktualni kuponi na jednom mjestu.</label>
                         <input placeholder="Search coupons..." />
                     </div>
-                    <div className="lower-header">
-                        <ul>
-                            <li>Most popular</li>
-                            <li>Newest</li>
-                        </ul>
-                        <div className="border"></div>
-                        <ul>
-                            <li>Lijepa.hr</li>
-                            <li>Notino.hr</li>
-                            <li>Notino.hr</li>
-                            <li>Notino.hr</li>
-                        </ul>
-                    </div>
-                </MobileNavigationStyled>
-            )}
+                    <button>
+                        <BiAddToQueue size={24} />
+                        <span>Dodaj&nbsp;novi</span>
+                    </button>
+                </div>
+
+                <div className="lower-header">
+                    <ul>
+                        <li onClick={() => navigate("/coupons")}>Show all</li>
+                    </ul>
+                    <div className="border"></div>
+                    <ul>
+                        <li>Most popular</li>
+                        <li>Newest</li>
+                    </ul>
+                    <div className="border"></div>
+                    <ul>
+                        {webshopRoutes.map((item) => (
+                            <li
+                                onClick={() => navigate(item.redirectPath)}
+                                key={item.webshopName}
+                            >
+                                {item.webshopName}
+                            </li>
+                            
+                        ))}
+                    </ul>
+                </div>
+            </NavigationStyled>
         </>
     );
 };

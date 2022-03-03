@@ -5,10 +5,22 @@ html {
     --color-gray: rgb(174, 175, 179);
     --color-yellow-light: rgba(255, 251, 235);
     height: 100%;
+    max-width: 1920px;
+    min-width: 360px;
+    margin: auto;
 }
 
 * {
     box-sizing: border-box;
+}
+
+a {
+    all: unset;
+    cursor: pointer;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 body {
