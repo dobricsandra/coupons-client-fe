@@ -11,8 +11,18 @@ const getCoupons = async (queryString: any) => {
     return data;
 };
 
-const useCouponsFetch = (queryString: any) => {
+const getCouponById = async (id: Number) => {
+    const { data } = await axios.get(
+        API_ENDPOINTS.coupons.getCouponByIdEndpoint(id)
+    );
+
+    return data;
+};
+
+export const useCouponsFetch = (queryString: any) => {
     return useQuery(["getCoupons", queryString], () => getCoupons(queryString));
 };
 
-export default useCouponsFetch;
+export const useCouponByIdFetch = (id: Number) => {
+    return useQuery(["getCouponById", id], () => getCouponById(id));
+};

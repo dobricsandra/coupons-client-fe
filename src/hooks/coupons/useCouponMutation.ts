@@ -12,19 +12,17 @@ const addCoupon = async (couponData: any) => {
     return data;
 };
 
-const upvoteCoupon = async (couponData: any) => {
+const upvoteCoupon = async (id: Number) => {
     const { data } = await axios.post(
-        API_ENDPOINTS.coupons.getCouponEndpoint,
-        couponData
+        API_ENDPOINTS.coupons.upvoteCouponEndpoint(id)
     );
 
     return data;
 };
 
-const downvoteCoupon = async (couponData: any) => {
+const downvoteCoupon = async (id: Number) => {
     const { data } = await axios.post(
-        API_ENDPOINTS.coupons.getCouponEndpoint,
-        couponData
+        API_ENDPOINTS.coupons.downvoteCouponEndpoint(id)
     );
 
     return data;
@@ -33,6 +31,8 @@ const downvoteCoupon = async (couponData: any) => {
 export const useCouponAdd = () =>
     useMutation((couponData) => addCoupon(couponData));
 
-export const useCouponUpvote = () => useMutation(upvoteCoupon);
+export const useCouponUpvote = () =>
+    useMutation((id: Number) => upvoteCoupon(id));
 
-export const useCouponDownvote = () => useMutation(downvoteCoupon);
+export const useCouponDownvote = () =>
+    useMutation((id: Number) => downvoteCoupon(id));

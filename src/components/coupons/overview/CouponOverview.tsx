@@ -3,7 +3,8 @@ import CouponsOverviewStyled from "./CouponOverview.style";
 import InfoBox from "../../common/info-box/InfoBox";
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
-import useCouponsFetch from "../../../hooks/coupons/useCoupon";
+import { useCouponsFetch } from "../../../hooks/coupons/useCoupon";
+import Loader from "../../common/loader/Loader";
 export default function CouponsOverview() {
     const location = useLocation();
 
@@ -41,7 +42,7 @@ export default function CouponsOverview() {
         );
     }
     if (isLoading) {
-        return <div>Loading...</div>;
+        return <Loader />;
     }
 
     if (!hasCoupons) {

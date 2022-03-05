@@ -15,8 +15,7 @@ const GroupOverviewStyled = styled.div`
         max-width: unset;
         text-align: center;
     }
-    margin: auto;
-    margin-top: 2%;
+    margin: 2% auto;
     > div {
         display: inline-block;
         width: 320px;

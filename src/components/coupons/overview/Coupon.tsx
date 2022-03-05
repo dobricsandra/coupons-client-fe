@@ -1,8 +1,35 @@
 import Rating from "../../common/rating/Rating";
 import { Card, CouponHeader, LogoWrapper } from "./Coupon.style";
+import {
+    useCouponDownvote,
+    useCouponUpvote,
+} from "../../../hooks/coupons/useCouponMutation";
 
 export default function Coupon(props: any) {
     const couponData = props.couponData;
+    const { mutate: upvoteCoupon, isLoading: isUpvoteLoading } =
+        useCouponUpvote();
+    const { mutate: downvoteCoupon, isLoading: isDownvoteLoading } =
+        useCouponDownvote();
+
+    const upvoteHandler = () => {
+        upvoteCoupon(couponData.id, {
+            onSuccess: (data) => {
+                couponData.popularity = data;
+            },
+            onError: (err: any) => {},
+        });
+    };
+
+    const downvoteHandler = () => {
+        downvoteCoupon(couponData.id, {
+            onSuccess: (data) => {
+                couponData.popularity = data;
+            },
+            onError: (err: any) => {},
+        });
+    };
+
     const webshopLogo = () => {
         if (couponData.webshop.name === "Lijepa.hr") {
             return (
@@ -47,7 +74,14 @@ export default function Coupon(props: any) {
             </div>
             <p>* Kupon vrijedi od 2020-01-01 do 2021-01-01</p>
             <p>* {couponData.description}</p>
-            <Rating>{couponData.popularity}</Rating>
+            <Rating
+                upvoteHandler={upvoteHandler}
+                downvoteHandler={downvoteHandler}
+                isLoading={isUpvoteLoading || isDownvoteLoading}
+                rating={couponData.popularity}
+            >
+                {couponData.popularity}
+            </Rating>
         </Card>
     );
 }

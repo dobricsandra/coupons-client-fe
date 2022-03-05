@@ -1,8 +1,9 @@
 const API_ENDPOINTS = {
     coupons: {
         getCouponEndpoint: "/vouchers",
-        upvoteCouponEndpoint: "/vouchers/like",
-        downvoteCouponEndpoint: "vouchers/dislike",
+        getCouponByIdEndpoint: (id: Number) => `/vouchers/${id}`,
+        upvoteCouponEndpoint: (id: Number) => `/vouchers/like/${id}`,
+        downvoteCouponEndpoint: (id: Number) => `/vouchers/dislike/${id}`,
     },
 };
 
