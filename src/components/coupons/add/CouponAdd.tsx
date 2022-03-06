@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import { useCouponsFetch } from "../../../hooks/coupons/useCoupon";
 import Loader from "../../common/loader/Loader";
 import styled from "styled-components";
+import Stepper from "../../common/stepper/Stepper";
+import Coupon from "../overview/Coupon";
 export default function CouponAdd() {
     // const { data: coupons, isLoading, isError } = useCouponsFetch(x);
 
@@ -39,89 +41,62 @@ export default function CouponAdd() {
     //     return <InfoBox>No coupons found!</InfoBox>;
     // }
     const [step, setStep] = useState(1);
+
     return (
         <CouponAddStyled>
-            <StepperHeaderLayout>
-                <StepperHeaderSectionLayout isFilled={step >= 1}>
-                    <span>step 1</span>
-                    {step !== 1 && <p>Choose type</p>}
-                </StepperHeaderSectionLayout>
-                <StepperHeaderSectionLayout isFilled={step >= 2}>
-                    <span>step 2</span>
-                    <p>Fill info</p>
-                </StepperHeaderSectionLayout>
-                <StepperHeaderSectionLayout isFilled={step >= 3}>
-                    <span>step 3</span>
-                    <p>Confirm</p>
-                </StepperHeaderSectionLayout>
-            </StepperHeaderLayout>
-            <StepperHeaderTitle>
-                {step === 1 && "Choose Voucher Type"}
-            </StepperHeaderTitle>
-            <form>
-                {step === 1 && (
-                    <StepperSection>
-                        <button>Voucher</button>
-                        <button>Free gift</button>
-                        <button>Free delivery</button>
-                    </StepperSection>
-                )}
-                {/* {step === 2 && (
-                        <CouponFormSecondSection setStep={setStep} />
+            <Stepper setStep={setStep}>
+                <form>
+                    {step === 1 && (
+                        <div className="first-stepper-page">
+                            <button>Voucher</button>
+                            <button>Free gift</button>
+                            <button>Free delivery</button>
+                        </div>
                     )}
-                    {step === 3 && <CouponFormThirdSection setStep={setStep} />} */}
-            </form>
+                    {step === 2 && (
+                        <div>
+                            <label>Prvi label</label>
+                            <input />
+                            <label>Drugi label</label>
+                            <input />
+                            <label>Treci label</label>
+                            <input />
+                            <label>Treci label</label>
+                            <input type="date" />
+                        </div>
+                    )}
+                    {step === 3 && (
+                        <Coupon
+                            couponData={{
+                                id: 11,
+                                amount: 30,
+                                description: "Test coupon 3 for Lijepa.hr.",
+                                validFrom: "2022-03-03T10:40:09.496Z",
+                                validTo: "2022-03-03T10:40:09.497Z",
+                                code: "CMSKFHK45464",
+                                likes: 88,
+                                dislikes: 22,
+                                popularity: 66,
+                                webshop: {
+                                    id: 4,
+                                    name: "Lijepa.hr",
+                                    url: "https://www.lijepa.hr/",
+                                },
+                                unit: {
+                                    id: 2,
+                                    name: "kn",
+                                },
+                                type: {
+                                    id: 1,
+                                    type: "euro",
+                                },
+                            }}
+                        >
+                            Opala
+                        </Coupon>
+                    )}
+                </form>
+            </Stepper>
         </CouponAddStyled>
     );
 }
-
-const StepperSection = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-`;
-
-const StepperHeaderLayout = styled.div`
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-    color: white;
-    font-size: 2rem;
-`;
-const StepperHeaderTitle = styled.div`
-    border-bottom: 1px solid white;
-    padding-top: 60px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    text-align: left;
-    color: white;
-    font-weight: 700;
-`;
-
-interface Props {
-    isFilled: boolean;
-}
-const StepperHeaderSectionLayout = styled.div<Props>`
-    display: flex;
-    border-top: 5px solid ${(props) => (props.isFilled ? "red" : "lightgrey")};
-    flex-direction: column;
-    align-items: flex-start;
-    width: 30%;
-    & span {
-        color: ${(props) => (props.isFilled ? "red" : "white")};
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        font-family: sans-serif;
-        padding-top: 1rem;
-        font-weight: 600;
-    }
-    & p {
-        color: ${(props) => (props.isFilled ? "red" : "white")};
-        font-size: 0.95rem;
-        margin: 0rem;
-        padding: 0rem;
-        padding-top: 0.2rem;
-    }
-`;
