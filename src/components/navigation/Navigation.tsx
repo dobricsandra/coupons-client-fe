@@ -13,7 +13,7 @@ const Navigation = () => {
                         <label>Aktualni kuponi na jednom mjestu.</label>
                         <input placeholder="Search coupons..." />
                     </div>
-                    <button>
+                    <button onClick={() => navigate("/coupons/add")}>
                         <BiAddToQueue size={24} />
                         <span>Dodaj&nbsp;novi</span>
                     </button>

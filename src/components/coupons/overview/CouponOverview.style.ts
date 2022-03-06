@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const GroupOverviewStyled = styled.div`
+const CouponOverviewStyled = styled.div`
     max-width: 1765px;
     @media (max-width: 1850px) {
         max-width: 1410px;
@@ -22,4 +22,4 @@ const GroupOverviewStyled = styled.div`
     }
 `;
 
-export default GroupOverviewStyled;
+export default CouponOverviewStyled;
