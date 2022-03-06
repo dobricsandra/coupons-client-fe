@@ -1,21 +1,25 @@
+import { HiThumbUp, HiThumbDown } from "react-icons/hi";
+
 import RatingStyled from "./Rating.style";
 
 export default function Rating(props: any) {
     return (
-        <RatingStyled rating={props.rating} isLoading={props.isLoading}>
+        <RatingStyled
+            rating={props.rating}
+            isLoading={props.isLoading}
+            isRated={props.isRated}
+        >
             Uspješno iskorišteno?
-            <img
-                className="w-6"
-                src="/images/thumb_up.png"
+            <HiThumbUp
+                className="thumb-up"
+                size={30}
                 title="Da"
-                alt="thumbs up"
                 onClick={props.upvoteHandler}
             />
             <div className="popularity">{props.children}</div>
-            <img
-                className="w-6"
-                src="/images/thumb_down.png"
-                alt="thumbs down"
+            <HiThumbDown
+                className="thumb-down"
+                size={30}
                 title="Ne"
                 onClick={props.downvoteHandler}
             />

@@ -4,9 +4,35 @@ import {
     useCouponDownvote,
     useCouponUpvote,
 } from "../../../hooks/coupons/useCouponMutation";
+import {
+    getLocalStorageItem,
+    setLocalStorageItem,
+} from "../../../services/localStorage";
+import { useEffect, useState } from "react";
 
 export default function Coupon(props: any) {
-    const couponData = props.couponData;
+    const [couponData, setCouponData] = useState({
+        ...props.couponData,
+        validFrom: new Date(props.couponData.validFrom)
+            .toLocaleString("hr-HR")
+            .replaceAll(" ", "")
+            .slice(0, -8),
+        validTo: new Date(props.couponData.validTo)
+            .toLocaleString("hr-HR")
+            .replaceAll(" ", "")
+            .slice(0, -8),
+    });
+
+    const [isCouponRated, setIsCouponRated] = useState();
+    const ratedCouponsFromLocalStorage =
+        JSON.parse(getLocalStorageItem("ratedCoupons")!) || {};
+
+    useEffect(() => {
+        if (ratedCouponsFromLocalStorage[couponData.id]) {
+            setIsCouponRated(ratedCouponsFromLocalStorage[couponData.id]);
+        }
+    }, [couponData.id, ratedCouponsFromLocalStorage]);
+
     const { mutate: upvoteCoupon, isLoading: isUpvoteLoading } =
         useCouponUpvote();
     const { mutate: downvoteCoupon, isLoading: isDownvoteLoading } =
@@ -15,16 +41,34 @@ export default function Coupon(props: any) {
     const upvoteHandler = () => {
         upvoteCoupon(couponData.id, {
             onSuccess: (data) => {
-                couponData.popularity = data;
+                setCouponData({ ...couponData, popularity: data });
+                const ratedCouponsFromLocalStorage =
+                    JSON.parse(getLocalStorageItem("ratedCoupons")!) ?? {};
+                ratedCouponsFromLocalStorage[couponData.id] = "up";
+
+                setLocalStorageItem({
+                    key: "ratedCoupons",
+                    value: JSON.stringify(ratedCouponsFromLocalStorage!),
+                });
             },
-            onError: (err: any) => {},
+            onError: (err: any) => {
+                console.log(err);
+            },
         });
     };
 
     const downvoteHandler = () => {
         downvoteCoupon(couponData.id, {
             onSuccess: (data) => {
-                couponData.popularity = data;
+                setCouponData({ ...couponData, popularity: data });
+                const ratedCouponsFromLocalStorage =
+                    JSON.parse(getLocalStorageItem("ratedCoupons")!) ?? {};
+                ratedCouponsFromLocalStorage[couponData.id] = "down";
+
+                setLocalStorageItem({
+                    key: "ratedCoupons",
+                    value: JSON.stringify(ratedCouponsFromLocalStorage!),
+                });
             },
             onError: (err: any) => {},
         });
@@ -72,12 +116,16 @@ export default function Coupon(props: any) {
                     onClick={copyToClipboard}
                 />
             </div>
-            <p>* Kupon vrijedi od 2020-01-01 do 2021-01-01</p>
+            <p>
+                * Kupon vrijedi od {couponData.validFrom} do{" "}
+                {couponData.validTo}
+            </p>
             <p>* {couponData.description}</p>
             <Rating
                 upvoteHandler={upvoteHandler}
                 downvoteHandler={downvoteHandler}
                 isLoading={isUpvoteLoading || isDownvoteLoading}
+                isRated={isCouponRated}
                 rating={couponData.popularity}
             >
                 {couponData.popularity}

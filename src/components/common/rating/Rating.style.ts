@@ -3,6 +3,7 @@ import styled from "styled-components";
 interface Props {
     rating: any;
     isLoading: boolean;
+    isRated: string;
 }
 
 const getRatingColor = (props: any) => {
@@ -23,20 +24,28 @@ const RatingStyled = styled.div<Props>`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    img {
-        width: 1.5rem;
+    svg {
         pointer-events: ${(props) => {
-            if (props.isLoading) return "none";
+            if (props.isLoading || props.isRated) return "none";
         }};
     }
-
+    .thumb-up {
+        color: ${(props) => {
+            if (props.isRated === "up") return "green";
+        }};
+    }
+    .thumb-down {
+        color: ${(props) => {
+            if (props.isRated === "down") return "red";
+        }};
+    }
     .popularity {
         padding: 0.5rem 1rem;
         background-color: ${(props) => getRatingColor(props)};
     }
-    > img:hover {
+    > svg:hover {
         cursor: ${(props) => {
-            if (!props.isLoading) return "pointer";
+            if (!props.isLoading && !props.isRated) return "pointer";
         }};
     }
 `;
