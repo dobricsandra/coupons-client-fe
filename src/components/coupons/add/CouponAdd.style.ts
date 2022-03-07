@@ -15,6 +15,7 @@ const CouponAddStyled = styled.div`
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
+        padding: 5% 0px;
         button {
             border: none;
             width: 60%;

@@ -1,12 +1,14 @@
 import CouponAddStyled from "./CouponAdd.style";
-import InfoBox from "../../common/info-box/InfoBox";
-import { useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
-import { useCouponsFetch } from "../../../hooks/coupons/useCoupon";
 import Loader from "../../common/loader/Loader";
 import styled from "styled-components";
 import Stepper from "../../common/stepper/Stepper";
 import Coupon from "../overview/Coupon";
+
+import CouponForm from "../form/CouponForm";
+
+import { useState } from "react";
+import * as yup from "yup";
+
 export default function CouponAdd() {
     // const { data: coupons, isLoading, isError } = useCouponsFetch(x);
 
@@ -41,30 +43,23 @@ export default function CouponAdd() {
     //     return <InfoBox>No coupons found!</InfoBox>;
     // }
     const [step, setStep] = useState(1);
-
+    const [typeId, setTypeId] = useState(1);
     return (
         <CouponAddStyled>
             <Stepper setStep={setStep}>
                 <form>
                     {step === 1 && (
                         <div className="first-stepper-page">
-                            <button>Voucher</button>
-                            <button>Free gift</button>
-                            <button>Free delivery</button>
+                            <button onClick={() => setStep(2)}>Voucher</button>
+                            <button onClick={() => setStep(2)}>
+                                Free gift
+                            </button>
+                            <button onClick={() => setStep(2)}>
+                                Free delivery
+                            </button>
                         </div>
                     )}
-                    {step === 2 && (
-                        <div>
-                            <label>Prvi label</label>
-                            <input />
-                            <label>Drugi label</label>
-                            <input />
-                            <label>Treci label</label>
-                            <input />
-                            <label>Treci label</label>
-                            <input type="date" />
-                        </div>
-                    )}
+                    {step === 2 && <CouponForm typeId={typeId}></CouponForm>}
                     {step === 3 && (
                         <Coupon
                             couponData={{

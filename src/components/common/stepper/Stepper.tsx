@@ -23,7 +23,10 @@ export default function Stepper(props: any) {
         <StepperStyled>
             <div className="stepper-header">
                 {stepHeaderConfig.map((step: any) => (
-                    <div onClick={() => props.setStep(step.stepNumber)}>
+                    <div
+                        onClick={() => props.setStep(step.stepNumber)}
+                        key={step.stepNumber}
+                    >
                         <span>{step.stepLabel}</span>
                         <p>{step.stepDescription}</p>
                     </div>
