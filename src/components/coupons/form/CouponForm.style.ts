@@ -51,12 +51,14 @@ export const CouponFormStyled = styled.div`
             pointer-events: none;
             opacity: 1;
         }
-        input {
+
+        input,
+        select {
             border-bottom: 1.5px solid var(--color-gray);
-            border-radius: 1%;
             padding-bottom: 2px;
             margin-top: 5px;
         }
+
         .error-label {
             font-size: 12px;
             color: var(--color-red);

@@ -1,9 +1,10 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import addCouponFormSchema from "./CouponForm.schema";
-import * as yup from "yup";
 import { CouponFormStyled } from "./CouponForm.style";
+import { useWebshops } from "../../../hooks/webshops/useWebshop";
 export default function CouponForm(props: any) {
+    const { data: webshops, isLoading, isError } = useWebshops();
     const typeId = props.typeId;
     const {
         register,
@@ -11,21 +12,33 @@ export default function CouponForm(props: any) {
         formState: { errors },
         reset,
     } = useForm({
-        mode: "onTouched",
         shouldFocusError: false,
         resolver: yupResolver(addCouponFormSchema),
     });
     const onSubmitHandler = (data: any) => {
-        reset();
+        console.log(data);
     };
+
     return (
-        <>
+        <form onSubmit={handleSubmit(onSubmitHandler)}>
             {typeId === 1 && (
                 <CouponFormStyled>
                     <div className="form-group">
                         <label>
-                            <input placeholder=" " {...register("amount")} />
-                            <span>Webshop</span>
+                            <datalist id="suggestions">
+                                {webshops?.map((webshop: any) => (
+                                    <option key={webshop.id}>
+                                        {webshop.name}
+                                    </option>
+                                ))}
+                            </datalist>
+                            <input
+                                autoComplete="on"
+                                placeholder=" "
+                                list="suggestions"
+                                {...register("webshopId")}
+                            />
+                            <span>*Webshop</span>
                         </label>
                         <p className="error-label">{errors.amount?.message}</p>
                     </div>
@@ -36,7 +49,7 @@ export default function CouponForm(props: any) {
                                     placeholder=" "
                                     {...register("amount")}
                                 />
-                                <span>Amount</span>
+                                <span>*Amount</span>
                             </label>
                             <p className="error-label">
                                 {errors.amount?.message}
@@ -44,57 +57,60 @@ export default function CouponForm(props: any) {
                         </div>
                         <div>
                             <label>
-                                <input
-                                    placeholder=" "
-                                    {...register("amount")}
-                                />
+                                <input placeholder=" " {...register("unit")} />
                                 <span>kn</span>
                             </label>{" "}
                             <p className="error-label">
-                                {errors.amount?.message}
+                                {errors.unit?.message}
                             </p>
                         </div>
                     </div>
                     <div className="form-group">
                         <label>
-                            <input placeholder=" " {...register("amount")} />
-                            <span>Code</span>
+                            <input placeholder=" " {...register("code")} />
+                            <span>*Code</span>
                         </label>
-                        <p className="error-label">{errors.amount?.message}</p>
-                    </div>
-                    <div className="form-group">
-                        <label>
-                            <input placeholder=" " {...register("amount")} />
-                            <span>Additional info</span>
-                        </label>
-                        <p className="error-label">{errors.amount?.message}</p>
+                        <p className="error-label">{errors.code?.message}</p>
                     </div>
                     <div className="form-group">
                         <label>
                             <input
                                 placeholder=" "
-                                {...register("amount")}
+                                {...register("description")}
+                            />
+                            <span>Additional info</span>
+                        </label>
+                        <p className="error-label">
+                            {errors.description?.message}
+                        </p>
+                    </div>
+                    <div className="form-group">
+                        <label>
+                            <input
+                                placeholder=" "
+                                {...register("validFrom")}
                                 type="date"
                             />
                             <span>Valid from</span>
                         </label>
-                        <p className="error-label">{errors.amount?.message}</p>
+                        <p className="error-label">
+                            {errors.validFrom?.message}
+                        </p>
                     </div>
                     <div className="form-group">
                         <label>
                             <input
                                 placeholder=" "
-                                {...register("amount")}
+                                {...register("validTo")}
                                 type="date"
                             />
                             <span>Valid to</span>
                         </label>
-                        <p className="error-label">{errors.amount?.message}</p>
+                        <p className="error-label">{errors.validTo?.message}</p>
                     </div>
+                    <button type="submit">Next</button>
                 </CouponFormStyled>
             )}
-
-            {/* <button onClick={handleSubmit(onSubmitHandler)}>Ok</button> */}
-        </>
+        </form>
     );
 }

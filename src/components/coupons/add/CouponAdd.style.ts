@@ -10,12 +10,6 @@ const CouponAddStyled = styled.div`
         justify-content: center;
         align-items: center;
         gap: 1rem;
-    }
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 5% 0px;
         button {
             border: none;
             width: 60%;
@@ -31,6 +25,13 @@ const CouponAddStyled = styled.div`
                 font-size: 1rem;
             }
         }
+    }
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 5% 0px;
+
         input {
             all: unset;
             width: 100%;

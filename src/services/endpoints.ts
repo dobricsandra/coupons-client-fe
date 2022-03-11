@@ -5,6 +5,9 @@ const API_ENDPOINTS = {
         upvoteCouponEndpoint: (id: Number) => `/vouchers/like/${id}`,
         downvoteCouponEndpoint: (id: Number) => `/vouchers/dislike/${id}`,
     },
+    webshops: {
+        getWebshopsEndpoint: "/webshops",
+    },
 };
 
 export default API_ENDPOINTS;

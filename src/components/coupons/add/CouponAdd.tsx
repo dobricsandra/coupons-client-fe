@@ -42,55 +42,52 @@ export default function CouponAdd() {
     // if (!hasCoupons) {
     //     return <InfoBox>No coupons found!</InfoBox>;
     // }
+
     const [step, setStep] = useState(1);
     const [typeId, setTypeId] = useState(1);
     return (
         <CouponAddStyled>
             <Stepper setStep={setStep}>
-                <form>
-                    {step === 1 && (
-                        <div className="first-stepper-page">
-                            <button onClick={() => setStep(2)}>Voucher</button>
-                            <button onClick={() => setStep(2)}>
-                                Free gift
-                            </button>
-                            <button onClick={() => setStep(2)}>
-                                Free delivery
-                            </button>
-                        </div>
-                    )}
-                    {step === 2 && <CouponForm typeId={typeId}></CouponForm>}
-                    {step === 3 && (
-                        <Coupon
-                            couponData={{
-                                id: 11,
-                                amount: 30,
-                                description: "Test coupon 3 for Lijepa.hr.",
-                                validFrom: "2022-03-03T10:40:09.496Z",
-                                validTo: "2022-03-03T10:40:09.497Z",
-                                code: "CMSKFHK45464",
-                                likes: 88,
-                                dislikes: 22,
-                                popularity: 66,
-                                webshop: {
-                                    id: 4,
-                                    name: "Lijepa.hr",
-                                    url: "https://www.lijepa.hr/",
-                                },
-                                unit: {
-                                    id: 2,
-                                    name: "kn",
-                                },
-                                type: {
-                                    id: 1,
-                                    type: "euro",
-                                },
-                            }}
-                        >
-                            Opala
-                        </Coupon>
-                    )}
-                </form>
+                {step === 1 && (
+                    <div className="first-stepper-page">
+                        <button onClick={() => setStep(2)}>Voucher</button>
+                        <button onClick={() => setStep(2)}>Free gift</button>
+                        <button onClick={() => setStep(2)}>
+                            Free delivery
+                        </button>
+                    </div>
+                )}
+                {step === 2 && <CouponForm typeId={typeId}></CouponForm>}
+                {step === 3 && (
+                    <Coupon
+                        couponData={{
+                            id: 11,
+                            amount: 30,
+                            description: "Test coupon 3 for Lijepa.hr.",
+                            validFrom: "2022-03-03T10:40:09.496Z",
+                            validTo: "2022-03-03T10:40:09.497Z",
+                            code: "CMSKFHK45464",
+                            likes: 88,
+                            dislikes: 22,
+                            popularity: 66,
+                            webshop: {
+                                id: 4,
+                                name: "Lijepa.hr",
+                                url: "https://www.lijepa.hr/",
+                            },
+                            unit: {
+                                id: 2,
+                                name: "kn",
+                            },
+                            type: {
+                                id: 1,
+                                type: "euro",
+                            },
+                        }}
+                    >
+                        Opala
+                    </Coupon>
+                )}
             </Stepper>
         </CouponAddStyled>
     );
