@@ -15,8 +15,10 @@ export default function CouponForm(props: any) {
         shouldFocusError: false,
         resolver: yupResolver(addCouponFormSchema),
     });
+
     const onSubmitHandler = (data: any) => {
-        console.log(data);
+        props.setNewCouponData({ ...data, type: props.typeId });
+        props.setStep(3);
     };
 
     return (
@@ -40,7 +42,9 @@ export default function CouponForm(props: any) {
                             />
                             <span>*Webshop</span>
                         </label>
-                        <p className="error-label">{errors.amount?.message}</p>
+                        <p className="error-label">
+                            {errors.webshopId?.message}
+                        </p>
                     </div>
                     <div className="form-group amount">
                         <div>

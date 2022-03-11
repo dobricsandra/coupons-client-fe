@@ -75,7 +75,7 @@ export default function Coupon(props: any) {
     };
 
     const webshopLogo = () => {
-        if (couponData.webshop.name === "Lijepa.hr") {
+        if (couponData.webshop?.name === "Lijepa.hr") {
             return (
                 <img
                     src="/images/webshop-logos/lijepa-hr_logo.png"
@@ -83,7 +83,7 @@ export default function Coupon(props: any) {
                 />
             );
         }
-        if (couponData.webshop.name === "Notino") {
+        if (couponData.webshop?.name === "Notino") {
             return (
                 <img
                     src="/images/webshop-logos/notino_logo.png"
@@ -91,7 +91,7 @@ export default function Coupon(props: any) {
                 />
             );
         }
-        return <span className="name-logo">{couponData.webshop.name}</span>;
+        return <span className="name-logo">{couponData.webshop?.name}</span>;
     };
 
     const copyToClipboard = () => {
@@ -104,7 +104,7 @@ export default function Coupon(props: any) {
                 <LogoWrapper>{webshopLogo()}</LogoWrapper>
                 <div>
                     {couponData.amount}
-                    {couponData.unit.name}
+                    {couponData.unit?.name}
                 </div>
             </CouponHeader>
             <div className="coupon-code">

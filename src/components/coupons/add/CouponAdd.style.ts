@@ -43,6 +43,11 @@ const CouponAddStyled = styled.div`
             background-color: green; //pink or plum
         }
     }
+    .coupon-container {
+        > div {
+            margin: auto;
+        }
+    }
 `;
 
 export default CouponAddStyled;
