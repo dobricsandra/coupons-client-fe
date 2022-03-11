@@ -5,7 +5,7 @@ import API_ENDPOINTS from "../../services/endpoints";
 
 const addCoupon = async (couponData: any) => {
     const { data } = await axios.post(
-        API_ENDPOINTS.coupons.getCouponEndpoint,
+        API_ENDPOINTS.coupons.createCouponEndpoint,
         couponData
     );
 
@@ -29,7 +29,7 @@ const downvoteCoupon = async (id: Number) => {
 };
 
 export const useCouponAdd = () =>
-    useMutation((couponData) => addCoupon(couponData));
+    useMutation((couponData: any) => addCoupon(couponData));
 
 export const useCouponUpvote = () =>
     useMutation((id: Number) => upvoteCoupon(id));

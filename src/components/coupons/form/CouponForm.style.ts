@@ -54,9 +54,14 @@ export const CouponFormStyled = styled.div`
 
         input,
         select {
-            border-bottom: 1.5px solid var(--color-gray);
+            all: unset;
+            margin: 5px;
             padding-bottom: 2px;
             margin-top: 5px;
+            background-color: var(--color-black);
+            border: none;
+            border-bottom: 1.5px solid var(--color-gray);
+            color: var(--color-white);
         }
 
         .error-label {

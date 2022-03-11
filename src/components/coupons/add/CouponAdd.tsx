@@ -5,11 +5,13 @@ import Stepper from "../../common/stepper/Stepper";
 import Coupon from "../overview/Coupon";
 
 import CouponForm from "../form/CouponForm";
-
+import { useCouponAdd } from "../../../hooks/coupons/useCouponMutation";
 import { useState } from "react";
 import * as yup from "yup";
+import { useNavigate } from "react-router";
 
 export default function CouponAdd() {
+    const navigate = useNavigate();
     // const { data: coupons, isLoading, isError } = useCouponsFetch(x);
 
     // const hasCoupons = coupons && coupons.length > 0;
@@ -46,7 +48,18 @@ export default function CouponAdd() {
     const [step, setStep] = useState(1);
     const [typeId, setTypeId] = useState(1);
     const [newCouponData, setNewCouponData] = useState({});
-
+    const { mutate: addCoupon } = useCouponAdd();
+    const confirmCouponHandler = () => {
+        addCoupon(newCouponData, {
+            onSuccess: (data) => {
+                console.log(data);
+                navigate("/");
+            },
+            onError: (data) => {
+                console.log(data);
+            },
+        });
+    };
     return (
         <CouponAddStyled>
             <Stepper setStep={setStep}>
@@ -76,6 +89,7 @@ export default function CouponAdd() {
                 {step === 3 && (
                     <div className="coupon-container">
                         <Coupon couponData={newCouponData}></Coupon>
+                        <button onClick={confirmCouponHandler}>Confirm</button>
                     </div>
                 )}
             </Stepper>
