@@ -26,23 +26,7 @@ const CouponAddStyled = styled.div`
             }
         }
     }
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        padding: 5% 0px;
 
-        input {
-            all: unset;
-            width: 100%;
-            color: white;
-            border-bottom: 2px solid var(--color-gray);
-            margin: 10px 0px;
-        }
-        button:hover {
-            background-color: green; //pink or plum
-        }
-    }
     .coupon-container {
         > div {
             margin: auto;

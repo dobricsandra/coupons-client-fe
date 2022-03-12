@@ -4,9 +4,10 @@ import addCouponFormSchema from "./CouponForm.schema";
 import { CouponFormStyled } from "./CouponForm.style";
 import { useWebshops } from "../../../hooks/webshops/useWebshop";
 import { useUnitsFetch } from "../../../hooks/units/useUnit";
+import Loader from "../../common/loader/Loader";
 export default function CouponForm(props: any) {
-    const { data: webshops } = useWebshops();
-    const { data: units } = useUnitsFetch();
+    const { data: webshops, isLoading: isLoadingWebshops } = useWebshops();
+    const { data: units, isLoading: isLoadingUnits } = useUnitsFetch();
     const typeId = props.typeId;
     const {
         register,
@@ -22,11 +23,18 @@ export default function CouponForm(props: any) {
         props.setNewCouponData({
             ...data,
             typeId: props.typeId,
-            validFrom: "2022-03-11T23:12:29.744Z",
-            validTo: "2022-03-11T23:12:29.744Z",
+            validFrom: data.validFrom
+                ? new Date(data.validFrom).toISOString()
+                : new Date().toISOString(),
+            validTo: data.validTo
+                ? new Date(data.validTo).toISOString()
+                : new Date().toISOString(),
         });
         props.setStep(3);
     };
+    if (isLoadingUnits || isLoadingWebshops) {
+        return <Loader />;
+    }
 
     return (
         <form onSubmit={handleSubmit(onSubmitHandler)}>

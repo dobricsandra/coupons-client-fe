@@ -1,4 +1,5 @@
 import { useQuery } from "react-query";
+import { ICoupon } from "../../models/coupons/types";
 
 import axios from "../../services/axiosClient";
 import API_ENDPOINTS from "../../services/endpoints";
@@ -20,9 +21,11 @@ const getCouponById = async (id: Number) => {
 };
 
 export const useCouponsFetch = (queryString: any) => {
-    return useQuery(["getCoupons", queryString], () => getCoupons(queryString));
+    return useQuery<Array<ICoupon>, Error>(["getCoupons", queryString], () =>
+        getCoupons(queryString)
+    );
 };
 
 export const useCouponByIdFetch = (id: Number) => {
-    return useQuery(["getCouponById", id], () => getCouponById(id));
+    return useQuery<ICoupon>(["getCouponById", id], () => getCouponById(id));
 };

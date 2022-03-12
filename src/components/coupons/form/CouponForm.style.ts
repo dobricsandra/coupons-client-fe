@@ -7,11 +7,39 @@ export const CouponFormStyled = styled.div`
     @media (max-width: 700px) {
         width: 100%;
     }
-    padding: 5%;
+    padding: 4%;
     margin: auto;
-    justify-content: space-between;
+    justify-content: space-around;
     background-color: var(--color-black);
     flex-wrap: wrap;
+    form {
+        input {
+            all: unset;
+            width: 100%;
+            color: white;
+            border-bottom: 2px solid var(--color-gray);
+            margin: 10px 0px;
+        }
+        button:hover {
+            background-color: green; //pink or plum
+        }
+    }
+    button {
+        border: none;
+        width: 50%;
+        padding: 2.5%;
+        margin-top: 4%;
+        font-size: 1.3rem;
+        font-weight: 500;
+        text-transform: uppercase;
+        background-color: pink; //pink or plum
+        cursor: pointer;
+        @media (max-width: 750px) {
+            width: 100%;
+            padding: 4%;
+            font-size: 1rem;
+        }
+    }
     .form-group {
         width: 45%;
         @media (max-width: 500px) {
@@ -33,7 +61,7 @@ export const CouponFormStyled = styled.div`
                 }
             }
             > div:not(:first-child) {
-                width: 30%;
+                width: 25%;
             }
         }
         .unit {
@@ -55,13 +83,16 @@ export const CouponFormStyled = styled.div`
         input,
         select {
             all: unset;
-            margin: 5px;
             padding-bottom: 2px;
             margin-top: 5px;
             background-color: var(--color-black);
             border: none;
             border-bottom: 1.5px solid var(--color-gray);
             color: var(--color-white);
+
+            width: 100%;
+            color: white;
+            margin: 10px 0px;
         }
 
         .error-label {
@@ -69,6 +100,7 @@ export const CouponFormStyled = styled.div`
             color: var(--color-red);
             margin: 0px;
             padding: 0px;
+            padding-top: 3px;
         }
     }
 `;

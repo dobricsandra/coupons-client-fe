@@ -9,9 +9,11 @@ import {
     setLocalStorageItem,
 } from "../../../services/localStorage";
 import { useEffect, useState } from "react";
+import { ICoupon } from "../../../models/coupons/types";
+import { useNavigate } from "react-router-dom";
 
 export default function Coupon(props: any) {
-    const [couponData, setCouponData] = useState({
+    const [couponData, setCouponData] = useState<ICoupon>({
         ...props.couponData,
         validFrom: new Date(props.couponData.validFrom)
             .toLocaleString("hr-HR")
@@ -24,6 +26,7 @@ export default function Coupon(props: any) {
     });
 
     const [isCouponRated, setIsCouponRated] = useState();
+    const navigate = useNavigate();
     const ratedCouponsFromLocalStorage =
         JSON.parse(getLocalStorageItem("ratedCoupons")!) || {};
 
@@ -95,13 +98,19 @@ export default function Coupon(props: any) {
     };
 
     const copyToClipboard = () => {
-        navigator.clipboard.writeText(couponData.couponCode);
+        navigator.clipboard.writeText(couponData.code);
     };
 
     return (
         <Card>
             <CouponHeader>
-                <LogoWrapper>{webshopLogo()}</LogoWrapper>
+                <LogoWrapper
+                    onClick={() =>
+                        (window.location.href = couponData.webshop?.url)
+                    }
+                >
+                    {webshopLogo()}
+                </LogoWrapper>
                 <div>
                     {couponData.amount}
                     {couponData.unit?.name}
