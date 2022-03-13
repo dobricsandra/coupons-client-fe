@@ -62,7 +62,7 @@ export default function CouponAdd() {
     };
     return (
         <CouponAddStyled>
-            <Stepper setStep={setStep}>
+            <Stepper setStep={setStep} step={step}>
                 {step === 1 && (
                     <div className="first-stepper-page">
                         <button

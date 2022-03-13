@@ -18,7 +18,6 @@ export default function Stepper(props: any) {
             stepDescription: "Confirm",
         },
     ];
-    const stepNumber = 3;
     return (
         <StepperStyled>
             <div className="stepper-header">
@@ -26,6 +25,12 @@ export default function Stepper(props: any) {
                     <div
                         onClick={() => props.setStep(step.stepNumber)}
                         key={step.stepNumber}
+                        style={{
+                            borderColor:
+                                props.step >= step.stepNumber
+                                    ? "red"
+                                    : "lightgrey",
+                        }}
                     >
                         <span>{step.stepLabel}</span>
                         <p>{step.stepDescription}</p>
@@ -35,7 +40,7 @@ export default function Stepper(props: any) {
             <StepperHeaderTitle>
                 {
                     stepHeaderConfig.find(
-                        (step) => step.stepNumber === stepNumber
+                        (step) => step.stepNumber === props.step
                     )?.stepDescription
                 }
             </StepperHeaderTitle>
