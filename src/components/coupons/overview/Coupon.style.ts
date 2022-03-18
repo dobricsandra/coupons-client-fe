@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const Card = styled.div`
+    max-width: 20rem;
+    width: 100%;
+    height: 300px;
     background-color: white;
     color: black;
     padding: 1rem;
     margin: 1rem;
-    max-height: 300px;
-    max-width: 20rem;
-    width: 100%;
+
     text-align: left;
     box-shadow: 7px 7px rgba(0, 0, 0, 0.5);
     & .coupon-code {

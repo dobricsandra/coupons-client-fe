@@ -23,16 +23,24 @@ export default function Stepper(props: any) {
             <div className="stepper-header">
                 {stepHeaderConfig.map((step: any) => (
                     <div
-                        onClick={() => props.setStep(step.stepNumber)}
                         key={step.stepNumber}
                         style={{
                             borderColor:
                                 props.step >= step.stepNumber
                                     ? "red"
-                                    : "lightgrey",
+                                    : "var(--color-grey",
                         }}
                     >
-                        <span>{step.stepLabel}</span>
+                        <span
+                            style={{
+                                color:
+                                    props.step >= step.stepNumber
+                                        ? "red"
+                                        : "var(--color-grey",
+                            }}
+                        >
+                            {step.stepLabel}
+                        </span>
                         <p>{step.stepDescription}</p>
                     </div>
                 ))}

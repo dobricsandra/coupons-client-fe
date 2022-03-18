@@ -78,22 +78,6 @@ export default function Coupon(props: any) {
     };
 
     const webshopLogo = () => {
-        if (couponData.webshop?.name === "Lijepa.hr") {
-            return (
-                <img
-                    src="/images/webshop-logos/lijepa-hr_logo.png"
-                    alt="lijepa.hr logo"
-                />
-            );
-        }
-        if (couponData.webshop?.name === "Notino") {
-            return (
-                <img
-                    src="/images/webshop-logos/notino_logo.png"
-                    alt="notino.hr logo"
-                />
-            );
-        }
         return <span className="name-logo">{couponData.webshop?.name}</span>;
     };
 
@@ -125,11 +109,16 @@ export default function Coupon(props: any) {
                     onClick={copyToClipboard}
                 />
             </div>
-            <p>
-                * Kupon vrijedi od {couponData.validFrom} do{" "}
-                {couponData.validTo}
-            </p>
-            <p>* {couponData.description}</p>
+
+            {couponData.validFrom && (
+                <p>
+                    *Kupon vrijedi od {couponData.validFrom} do{" "}
+                    {couponData.validTo}
+                </p>
+            )}
+            {couponData.description && <p>*{couponData.description}</p>}
+            {!couponData.description && <p>*Nema napomena</p>}
+
             <Rating
                 upvoteHandler={upvoteHandler}
                 downvoteHandler={downvoteHandler}

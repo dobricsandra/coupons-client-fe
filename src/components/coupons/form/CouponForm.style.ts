@@ -32,7 +32,7 @@ export const CouponFormStyled = styled.div`
         font-size: 1.3rem;
         font-weight: 500;
         text-transform: uppercase;
-        background-color: pink; //pink or plum
+        background-color: mediumseagreen; //pink or plum
         cursor: pointer;
         @media (max-width: 750px) {
             width: 100%;

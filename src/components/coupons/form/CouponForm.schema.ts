@@ -6,7 +6,6 @@ const couponFormSchema = yup.object().shape({
         .string()
         .required("Required.")
         .min(3, "Please enter no less than 3 characters."),
-    description: yup.string().min(3, "Please enter no less than 3 characters."),
     webshopId: yup.string().required("Required"),
     unitId: yup.string().required("Required"),
 });
