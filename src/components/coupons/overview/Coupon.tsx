@@ -10,7 +10,6 @@ import {
 } from "../../../services/localStorage";
 import { useEffect, useState } from "react";
 import { ICoupon } from "../../../models/coupons/types";
-import { useNavigate } from "react-router-dom";
 
 export default function Coupon(props: any) {
     const [couponData, setCouponData] = useState<ICoupon>({
@@ -26,7 +25,6 @@ export default function Coupon(props: any) {
     });
 
     const [isCouponRated, setIsCouponRated] = useState();
-    const navigate = useNavigate();
     const ratedCouponsFromLocalStorage =
         JSON.parse(getLocalStorageItem("ratedCoupons")!) || {};
 

@@ -13,7 +13,6 @@ export default function CouponForm(props: any) {
         register,
         handleSubmit,
         formState: { errors },
-        reset,
     } = useForm({
         shouldFocusError: false,
         resolver: yupResolver(addCouponFormSchema),
