@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import { useCouponsFetch } from "../../../hooks/coupons/useCoupon";
 import Loader from "../../common/loader/Loader";
 export default function CouponsOverview() {
+    console.log("coupon list rerendered");
     const location = useLocation();
 
     const [queryString, setQueryString] = useState(
@@ -13,6 +14,7 @@ export default function CouponsOverview() {
     );
 
     useEffect(() => {
+        console.log("use effect called for ", location);
         setQueryString(new URLSearchParams(location.search).toString());
     }, [location]);
 

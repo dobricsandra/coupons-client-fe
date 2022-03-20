@@ -4,6 +4,7 @@ html {
     --color-white: rgba(255, 255, 255, 1);
     --color-gray: rgb(174, 175, 179);
     --color-yellow-light: rgba(255, 251, 235);
+    --medium-text-size: 16px;
     height: 100%;
     max-width: 1920px;
     min-width: 360px;

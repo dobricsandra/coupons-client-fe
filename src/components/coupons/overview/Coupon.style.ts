@@ -1,54 +1,70 @@
 import styled from "styled-components";
 
-export const Card = styled.div`
-    max-width: 20rem;
-    width: 100%;
-    height: 300px;
+export const CouponContainer = styled.div`
     background-color: white;
-    color: black;
-    padding: 1rem;
-    margin: 1rem;
-
-    text-align: left;
     box-shadow: 7px 7px rgba(0, 0, 0, 0.5);
-    & .coupon-code {
-        padding: 2.5rem;
-        font-size: 1.5rem;
+    height: 300px;
+    width: 320px;
+    color: black;
+    margin: 1rem;
+    padding: 1rem;
+    &::after {
+        content: "";
         display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
         justify-content: space-evenly;
-        align-items: center;
-        line-height: 2rem;
-        img {
-            max-height: 2rem;
-            cursor: copy;
-        }
-    }
-
-    & p {
-        margin: 0.3rem;
-        font-size: 12px;
-        font-weight: 500;
     }
 `;
 
 export const CouponHeader = styled.div`
+    height: 20%;
     display: flex;
-    height: 3.5rem;
-    align-items: center;
     justify-content: space-between;
-    width: 100%;
-    font-size: 1.5rem;
-    border-bottom: 2px solid rgba(229, 231, 235);
+    align-items: center;
 `;
 
-export const LogoWrapper = styled.div`
-    & .name-logo {
-        background-color: black;
-        color: white;
-        font-weight: 700;
-        padding: 0.8rem;
-    }
-    & img {
-        max-height: 3.4rem;
-    }
+export const CouponLogo = styled.div`
+    max-width: 70%;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    max-height: 100%;
+    background-color: black;
+    font-weight: 500;
+    color: white;
+    padding: 0.8rem;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+`;
+
+interface TextProps {
+    fontSize: string;
+}
+export const Text = styled.div<TextProps>`
+    font-size: ${(props) => props.fontSize};
+`;
+
+export const CouponBody = styled.div`
+    height: 65%;
+    border-top: 2px solid rgba(229, 231, 235);
+    border-bottom: 2px solid rgba(229, 231, 235);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+`;
+
+export const CouponCode = styled.div`
+    font-size: 1.5rem;
+    padding: 15%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const CouponAdditionalInfo = styled.div`
+    font-size: 12px;
+    overflow-y: scroll;
 `;

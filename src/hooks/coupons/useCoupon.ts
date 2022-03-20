@@ -5,6 +5,7 @@ import axios from "../../services/axiosClient";
 import API_ENDPOINTS from "../../services/endpoints";
 
 const getCoupons = async (queryString: any) => {
+    console.log("getting coupons");
     const { data } = await axios.get(
         `${API_ENDPOINTS.coupons.getCouponEndpoint}?${queryString}`
     );
